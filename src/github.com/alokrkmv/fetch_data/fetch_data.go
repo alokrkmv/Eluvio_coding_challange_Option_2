@@ -1,11 +1,24 @@
 package fetch_data
 
 import (
+	"context"
 	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
+
+	"github.com/go-redis/redis"
 )
+
+// Adding the redis client which will act as persistant caching layer
+// to cache the data for the ids which are already being fetched 
+
+var cache = redis.NewClient(&redis.Options{
+	Addr:     "localhost:6379",
+	Password: "",
+	DB:       0,
+})
 
 const BASE_URL = "https://challenges.qluv.io/items/"
 
@@ -43,20 +56,39 @@ func get_request_handler(url string) (res interface{}, err error) {
 	return responseData, err
 }
 
-func GetData(urls []string) (final_res map[string][]string, failed_ids []string) {
+func GetData(urls []string) (final_res map[string]string, failed_ids []string) {
 
-	final_res = make(map[string][]string)
+	final_res = make(map[string]string)
 
-	
 	for _, url := range urls {
+		// Try to fetch the response for a particular id from redis cache
+		// to avoid any API call in case of cache hit
+		val, err := cache.Get(context.TODO(), url).Result()
+		if err == nil {
+			final_res[url] = val
+			continue
+		}
+
 		res, err := get_request_handler(url)
 		if err != nil {
 			log.Fatal(err)
 			failed_ids = append(failed_ids, url)
 		}
+		// Once the data is fetched caching it for one hour in redis cache so that 
+		// repeated API calls for duplicate ids can be avoided.
+		// The TTL is for one hour so that any update in the response for the same
+		// id can be reflected after an hour. This value can be changed based on the
+		// the actual scenario
+		
+		err = cache.Set(context.TODO(), url, string(res.([]uint8)), 1440*time.Second).Err()
+		if err != nil {
+			log.Fatal(err)
+			failed_ids = append(failed_ids, url)
+		}
 		// Convert the response from []uint8 to string
-		final_res[url] = append(final_res[url], string(res.([]uint8)))
+		final_res[url] = string(res.([]uint8))
 	}
+
 	return final_res, failed_ids
 
 }

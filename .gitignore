@@ -1,2 +1,5 @@
 pkg/
 bin/
+src/github.com/cespare/
+src/github.com/dgryski/
+src/github.com/go-redis/
