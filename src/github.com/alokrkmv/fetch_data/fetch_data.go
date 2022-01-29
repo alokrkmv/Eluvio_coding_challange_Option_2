@@ -23,6 +23,7 @@ var cache = redis.NewClient(&redis.Options{
 })
 
 const BASE_URL = "https://challenges.qluv.io/items/"
+
 // Intializing the mutex variable to prevent race condition
 var mutex = &sync.RWMutex{}
 
@@ -66,18 +67,18 @@ func GetConcurrentData(urls []string) (final_res map[string]string, failed_ids [
 	wg := sync.WaitGroup{}
 	i := 0
 	fmt.Println(len(urls))
-	for i<len(urls){
+	for i < len(urls) {
 		var spliced_url []string
-		// Splicing the array of ids into a set of 5 as the API can't handle more than 
+		// Splicing the array of ids into a set of 5 as the API can't handle more than
 		// five concurrent requests at a time.
 		// This will prevent API from throwing 429 error and also ensure to get
 		// maximum throughput from the API
-		if i+5<len(urls){
-			spliced_url = urls[i:i+5]
-		}else{
+		if i+5 < len(urls) {
+			spliced_url = urls[i : i+5]
+		} else {
 			spliced_url = urls[i:]
 		}
-		
+
 		for _, url := range spliced_url {
 			// If the result is already present in redis cache then serve from cache
 			// This will prevent API calls for duplicate ids
@@ -107,12 +108,11 @@ func GetConcurrentData(urls []string) (final_res map[string]string, failed_ids [
 				// The TTL is for one hour so that any update in the response for the same
 				// id can be reflected after an hour. This value can be changed based on the
 				// the actual scenario
-				
+
 				// We don't need to add any mutex lock while writing to redis cache
 				// as redis is capable of handling concurrent read and writes
-				
+
 				err = cache.Set(context.TODO(), url, string(res.([]uint8)), 1440*time.Second).Err()
-				
 
 				if err != nil {
 					log.Fatal(err)
@@ -121,46 +121,8 @@ func GetConcurrentData(urls []string) (final_res map[string]string, failed_ids [
 			}(url)
 
 		}
-		i=i+5
-}
+		i = i + 5
+	}
 	wg.Wait()
 	return final_res, failed_ids
-}
-
-// Function to fetch data from the API sequentialy
-func GetData(urls []string) (final_res map[string]string, failed_ids []string) {
-
-	final_res = make(map[string]string)
-
-	for _, url := range urls {
-		// Try to fetch the response for a particular id from redis cache
-		// to avoid any API call in case of cache hit
-		val, err := cache.Get(context.TODO(), url).Result()
-		if err == nil {
-			final_res[url] = val
-			continue
-		}
-
-		res, err := get_request_handler(url)
-		if err != nil {
-			log.Fatal(err)
-			failed_ids = append(failed_ids, url)
-		}
-		// Once the data is fetched caching it for one hour in redis cache so that
-		// repeated API calls for duplicate ids can be avoided.
-		// The TTL is for one hour so that any update in the response for the same
-		// id can be reflected after an hour. This value can be changed based on the
-		// the actual scenario
-
-		err = cache.Set(context.TODO(), url, string(res.([]uint8)), 1440*time.Second).Err()
-		if err != nil {
-			log.Fatal(err)
-			failed_ids = append(failed_ids, url)
-		}
-		// Convert the response from []uint8 to string
-		final_res[url] = string(res.([]uint8))
-	}
-
-	return final_res, failed_ids
-
 }
