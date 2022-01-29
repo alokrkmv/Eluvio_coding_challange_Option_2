@@ -9,7 +9,8 @@ import (
 
 func main() {
 	ids := read_from_file.ReadFromTextFile()
-	final_res,failed_ids:=fetch_data.GetData(ids)
+	// final_res,failed_ids:=fetch_data.GetData(ids)
+	final_res, failed_ids := fetch_data.GetConcurrentData(ids)
 	fmt.Println(final_res)
 	fmt.Println(failed_ids)
 }
