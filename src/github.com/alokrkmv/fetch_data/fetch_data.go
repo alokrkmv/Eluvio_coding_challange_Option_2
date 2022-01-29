@@ -97,7 +97,7 @@ func GetConcurrentData(urls []string) (final_res map[string]string, failed_ids [
 					failed_ids = append(failed_ids, url)
 					mutex.Unlock()
 				}
-				// Adding mutex lock to prevent race condition while writing failed ids to map
+				// Adding mutex lock to prevent race condition while writing result to map
 				mutex.Lock()
 				final_res[url] = string(res.([]uint8))
 				mutex.Unlock()
