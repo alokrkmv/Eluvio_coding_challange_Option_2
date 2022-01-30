@@ -34,6 +34,9 @@ To solve this problem, I broke down the problem into three major chunks and then
 2. After creating the handler I wrote another function capable of performing simultaneous API requests to the given endpoint. To achieve this I used goroutines and managed them using wait groups. Also as stated in the problem statement the API is capable of handling *only 5 simultaneous requests at a time* so I spawned the goroutines in a group of five so that API doesn't throw 429 and also provides maximum throughput.
 3. Last but not least as per the requirement of a problem statement, I added the logic to prevent API calls for duplicate ids. For this, I used **Redis** caching layer. The reason for choosing Redis caching over a local data structure like Map or array is that Redis is a high performant persistent data store that allows data to persist even after the execution of the program finishes. This helps in avoiding API calls for already fetched ids not in a single run but even in the subsequent run of the program.
 
+#### Why Go??
+I choose **Go** for this project as the soul of this project is handling concurrent calls and Go is a language build for concurrency. The goroutines, channels and wait groups provides an elegant and highly efficient way of handling concurrency compared to thread and processes which are used by most other languages like Python, Java etc. Handling race condition using Go's inbuilt mutex implementation is quite convenient. Because of all these aspects I felt that Go would be an ideal choice for this project.
+
 *Brief code Snippet of the Concurrent data Fetcher function is provided below*
 
 #### Talk is cheap show me the code
