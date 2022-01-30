@@ -104,7 +104,7 @@ func GetConcurrentData(urls []string) (final_res map[string]string, meta_map map
 				continue
 			}
 			wg.Add(1)
-			// Intialize go routines for concurrent calls.
+			// Initialize go routines for concurrent calls.
 			go func(url string) {
 
 				res, is_429, err := get_request_handler(url)
