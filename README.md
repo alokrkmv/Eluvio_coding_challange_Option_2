@@ -164,7 +164,7 @@ func GetConcurrentData(urls []string) (final_res map[string]string, meta_map map
 		* Now you can see any changes happening into the cache in real time.
 	* Setting up the Redis server without using docker (not recommended)
 		* Install redis in your local machine by following the official documentation [getting started with redis](https://redis.io/topics/quickstart)
-		* Once redis is successfully installed in your machine start the redis server using ````redis-server```
+		* Once redis is successfully installed in your machine start the redis server using ````redis-server````
 		* Start the redis client in a separate terminal using ````redis-cli````. 
 		* Now you can see any changes happening into the cache in real time.
 6. Once the setup part for the project is complete cd into ````src/github.com/alokrkmv```` and then execute ````go run main.go````
