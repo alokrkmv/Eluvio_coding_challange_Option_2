@@ -159,7 +159,7 @@ func GetConcurrentData(urls []string) (final_res map[string]string, meta_map map
 		* Pull docker redis container using ````docker pull redis```. This will pull the official redis image to your local machine.
 		* Make container up and running on port *6379* using ````docker run --name redis-test-instance -p 6379:6379 -d redisdocker run --name redis-test-instance -p 6379:6379 -d redis````
 		* Get the container id using ````docker ps````
-		* Exec inside the container using ````docker exec -it container_id bash```
+		* Exec inside the container using ````docker exec -it container_id bash````
 		* Once inside the container start the redis client using ``redis-cli``
 		* Now you can see any changes happening into the cache in real time.
 	* Setting up the Redis server without using docker (not recommended)
