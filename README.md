@@ -156,7 +156,7 @@ func GetConcurrentData(urls []string) (final_res map[string]string, meta_map map
 5. This project uses REDIS as a caching layer so an instance of up and running redis server is required in the local machine. To setup redis server you can use either of the following two ways.
 	* *Setting up the Redis server using docker (recommended)*
 		*  Setup docker in your local machine by following the official documentation [setup docker for ubuntu](https://docs.docker.com/engine/install/ubuntu/)
-		* Pull docker redis container using ````docker pull redis```. This will pull the official redis image to your local machine.
+		* Pull docker redis container using ````docker pull redis````. This will pull the official redis image to your local machine.
 		* Make container up and running on port *6379* using ````docker run --name redis-test-instance -p 6379:6379 -d redisdocker run --name redis-test-instance -p 6379:6379 -d redis````
 		* Get the container id using ````docker ps````
 		* Exec inside the container using ````docker exec -it container_id bash````
