@@ -48,8 +48,7 @@ func get_request_handler(url string) (res interface{}, is_429 bool, err error) {
 	// If the API response is something else than 200 then exit
 	if !(resp.StatusCode >= 200 && resp.StatusCode <= 299) {
 		err = errors.New("API response status is not 200")
-		fmt.Println(resp.StatusCode)
-		log.Fatal(err)
+		fmt.Println(err)
 
 		if resp.StatusCode == 429 {
 			is_429 = true
