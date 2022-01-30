@@ -1,10 +1,12 @@
 {
  "count_429": 0,
- "duplicate_ids_count": 8,
+ "duplicate_ids_count": 7,
  "failed_ids": null,
- "number_of_api_calls": 0,
+ "number_of_api_calls": 1,
  "number_of_failed_ids": 0,
- "successful_ids": null,
+ "successful_ids": [
+  "cRF2dvDZQsmu37WGgK6MTcL7XjH"
+ ],
  "total_ids": [
   "cRF2dvDZQsmu37WGgK6MTcL7XjH",
   "cRF2dvDZQsmu37WGgK6MTcL7XjH",
@@ -16,7 +18,7 @@
   "cRF2dvDZQsmu37WGgK6MTcL7XjH"
  ],
  "total_ids_count": 8,
- "total_response_time": 1137917,
+ "total_response_time": 1442646584,
  "unique_duplicate_ids": [
   "cRF2dvDZQsmu37WGgK6MTcL7XjH"
  ]

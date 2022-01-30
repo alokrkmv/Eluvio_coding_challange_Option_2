@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"time"
 
 	"github.com/alokrkmv/fetch_data"
@@ -17,13 +18,16 @@ func main() {
 	total_response_time := end_time.Sub(start_time)
 	meta_map["total_response_time"] = total_response_time
 
-	// Writing meta data is not a primary task so we will spawn a go routine to
+	// Writing meta data to file is not a primary task so we will spawn a go routine to
 	// write meta data hence it won't hamper the performance of the actual program
-	go writer.MetaDataWriter(meta_map)
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go writer.MetaDataWriter(meta_map, &wg)
 	err := writer.WriteOutput(final_res)
 
 	if err != nil {
 		fmt.Println("Something went wrong in writing response to the output file")
 	}
+	wg.Wait()
 
 }
