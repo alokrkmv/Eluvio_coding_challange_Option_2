@@ -29,5 +29,6 @@ func main() {
 		fmt.Println("Something went wrong in writing response to the output file")
 	}
 	wg.Wait()
+	fmt.Println("Program Executed Successfully")
 
 }
