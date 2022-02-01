@@ -1,25 +1,55 @@
 {
  "count_429": 0,
- "duplicate_ids_count": 7,
+ "duplicate_ids_count": 10,
  "failed_ids": null,
- "number_of_api_calls": 1,
+ "number_of_api_calls": 10,
  "number_of_failed_ids": 0,
+ "number_of_repeated_api_calls_avoided": 10,
  "successful_ids": [
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH"
+  "Cga2p3e3UtoG0bHjggabkmP",
+  "W8ES5CXZ1eZgZ",
+  "xcnJgLdLB90aumEorF1vYIM6ou",
+  "wDqeqlKvDktrrIg09sKFthHHB",
+  "XbNtW3UkpqC",
+  "dJJHLOlGZ4",
+  "YsXBsrk8pV70pZhNArUkadh",
+  "g1HpazOUoqBsuga93YpK",
+  "vvCcMSocLEfh5dHAgvtjl9Iw",
+  "O2WERylgpTK6"
  ],
  "total_ids": [
   "cRF2dvDZQsmu37WGgK6MTcL7XjH",
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH",
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH",
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH",
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH",
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH",
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH",
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH"
+  "SECmvUKoQNk",
+  "GsodlcJ59P0KPHjDCaPFOU5",
+  "QVaKzzCM5tOrO",
+  "QVaKzzCM5tOrO",
+  "XbNtW3UkpqC",
+  "Cga2p3e3UtoG0bHjggabkmP",
+  "W8ES5CXZ1eZgZ",
+  "xcnJgLdLB90aumEorF1vYIM6ou",
+  "wDqeqlKvDktrrIg09sKFthHHB",
+  "dJJHLOlGZ4",
+  "YsXBsrk8pV70pZhNArUkadh",
+  "O2WERylgpTK6",
+  "g1HpazOUoqBsuga93YpK",
+  "vvCcMSocLEfh5dHAgvtjl9Iw",
+  "dJJHLOlGZ4",
+  "YsXBsrk8pV70pZhNArUkadh",
+  "O2WERylgpTK6",
+  "g1HpazOUoqBsuga93YpK",
+  "vvCcMSocLEfh5dHAgvtjl9Iw"
  ],
- "total_ids_count": 8,
- "total_response_time": 1519281915,
+ "total_ids_count": 20,
+ "total_response_time": "2.667420 sec",
  "unique_duplicate_ids": [
-  "cRF2dvDZQsmu37WGgK6MTcL7XjH"
+  "QVaKzzCM5tOrO",
+  "cRF2dvDZQsmu37WGgK6MTcL7XjH",
+  "SECmvUKoQNk",
+  "GsodlcJ59P0KPHjDCaPFOU5",
+  "dJJHLOlGZ4",
+  "YsXBsrk8pV70pZhNArUkadh",
+  "O2WERylgpTK6",
+  "g1HpazOUoqBsuga93YpK",
+  "vvCcMSocLEfh5dHAgvtjl9Iw"
  ]
 }
