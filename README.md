@@ -175,7 +175,7 @@ func GetConcurrentData(urls []string) (final_res map[string]string, meta_map map
 
 ***
 ### Results
-I have added the snippets of both output.json and metadata.json file below
+I have added sample snippets of both output.json and metadata.json file below
 
 1. Output.json
 
