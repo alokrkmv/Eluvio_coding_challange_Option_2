@@ -11,12 +11,15 @@ import (
 )
 
 func main() {
+	// Uncomment this function to generate new ids
+	// helpers.GenerateIDs(10)
 	ids := read_from_file.ReadFromTextFile()
 	start_time := time.Now()
 	final_res, meta_map := fetch_data.GetConcurrentData(ids)
 	end_time := time.Now()
-	total_response_time := end_time.Sub(start_time)
-	meta_map["total_response_time"] = total_response_time
+	total_response_time := end_time.Sub(start_time).Seconds()
+	converted_string_time := fmt.Sprintf("%f", total_response_time)
+	meta_map["total_response_time"] = converted_string_time + " sec"
 
 	// Writing meta data to file is not a primary task so we will spawn a go routine to
 	// write meta data hence it won't hamper the performance of the actual program
