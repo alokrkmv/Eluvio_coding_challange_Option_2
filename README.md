@@ -173,6 +173,18 @@ func GetConcurrentData(urls []string) (final_res map[string]string, meta_map map
 9. ````output.json```` will have all the response data for all the unique request ids. This is the final output of the program
 10. ````meta_data.json```` will have various meta data like * total run time, number of duplicate calls prevented, list of failed ids, number of 429 requests occurred* etc. This data can help in providing further analysis about the program.
 
+***
+### Results
+I have added the snippets of both output.json and metadata.json file below
+
+1. Output.json
+
+![Output Snippet](https://github.com/alokrkmv/Eluvio_coding_challange_Option_2/blob/main/screenshots/output.png)
+
+2. metadata.json
+
+![Metadata Snippet](https://github.com/alokrkmv/Eluvio_coding_challange_Option_2/blob/main/screenshots/metadata.png)
+
 
 
 
